@@ -68,13 +68,12 @@ st.markdown("""
 st.markdown('<div class="main-header">🔬 Autonomous Scientific Experiment Planner</div>', unsafe_allow_html=True)
 st.markdown('<div class="sub-header">Analyze literature → Detect gaps → Generate experiment plans</div>', unsafe_allow_html=True)
 
+# Load API key silently from Streamlit secrets
+groq_api_key = st.secrets.get("GROQ_API_KEY", os.environ.get("GROQ_API_KEY", ""))
+
 # Sidebar
 with st.sidebar:
     st.header("⚙️ Configuration")
-    groq_api_key = st.text_input("Groq API Key", type="password", 
-                                   value=os.environ.get("GROQ_API_KEY", ""),
-                                   help="Get free key at console.groq.com")
-    
     st.markdown("---")
     st.subheader("Search Settings")
     num_papers = st.slider("Number of papers to fetch", 3, 15, 6)
